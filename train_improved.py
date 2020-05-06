@@ -21,7 +21,7 @@ img_dataset = Image_Dataset(trainX_preprocessed)
 
 model = AE_best().cuda()
 criterion = nn.MSELoss()
-optimizer = torch.optim.Adam(model.parameters(), lr=5e-5, weight_decay=1e-5)
+optimizer = torch.optim.Adam(model.parameters())# lr=5e-5, weight_decay=1e-5)
 
 model.train()
 n_epoch = 200
