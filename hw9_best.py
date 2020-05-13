@@ -26,4 +26,4 @@ model.eval()
 latents = inference(X=trainX, model=model)
 pred, X_embedded = predict_best(latents)
 
-save_prediction(invert(pred), prediction_name)
+save_prediction(pred, prediction_name)
