@@ -67,32 +67,33 @@ def inference(X, model, batch_size=256):
 
 def predict(latents):
     # First Dimension Reduction
-    transformer = KernelPCA(n_components=200, kernel='rbf', n_jobs=-1)
+    transformer = KernelPCA(n_components=200, kernel='rbf', n_jobs=-1, random_state=1003)
     kpca = transformer.fit_transform(latents)
     print('First Reduction Shape:', kpca.shape)
 
     # # Second Dimesnion Reduction
-    X_embedded = TSNE(n_components=2).fit_transform(kpca)
+    X_embedded = TSNE(n_components=2, random_state=1003).fit_transform(kpca)
     print('Second Reduction Shape:', X_embedded.shape)
 
     # Clustering
-    pred = MiniBatchKMeans(n_clusters=2, random_state=0).fit(X_embedded)
+    pred = MiniBatchKMeans(n_clusters=2, random_state=1003).fit(X_embedded)
     pred = [int(i) for i in pred.labels_]
     pred = np.array(pred)
     return pred, X_embedded
 
 def predict_best(latents):
     # First Dimension Reduction
-    transformer = KernelPCA(n_components=100, kernel='rbf', n_jobs=-1)
+    transformer = KernelPCA(n_components=97, kernel='rbf', n_jobs=-1, random_state=33)
     kpca = transformer.fit_transform(latents)
     print('First Reduction Shape:', kpca.shape)
+    #kpca = latents
 
     # # Second Dimesnion Reduction
-    X_embedded = TSNE(n_components=2).fit_transform(kpca)
+    X_embedded = TSNE(n_components=2, random_state=27).fit_transform(kpca)
     print('Second Reduction Shape:', X_embedded.shape)
 
     # Clustering
-    pred = MiniBatchKMeans(n_clusters=2, random_state=0).fit(X_embedded)
+    pred = MiniBatchKMeans(n_clusters=2, random_state=52).fit(X_embedded)
     pred = [int(i) for i in pred.labels_]
     pred = np.array(pred)
     return pred, X_embedded

@@ -9,6 +9,8 @@ from _utils import *
 from _dataset import Image_Dataset 
 from _model import AE
 
+same_seeds(0)
+
 train_x_name = sys.argv[1]
 checkpoint_name = sys.argv[2]
 prediction_name = sys.argv[3]
@@ -26,7 +28,6 @@ optimizer = torch.optim.Adam(model.parameters(), lr=1e-5, weight_decay=1e-5)
 model.train()
 n_epoch = 100
 
-same_seeds(0)
 # 準備 dataloader, model, loss criterion 和 optimizer
 img_dataloader = DataLoader(img_dataset, batch_size=64, shuffle=True)
 
